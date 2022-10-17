@@ -1,3 +1,3 @@
-C:/Universidad/ESTRUCTURAS DE DATOS/Semana 10/ProjectSolitaire/cmake-build-debug/CMakeFiles/ProjectSolitaire.dir
-C:/Universidad/ESTRUCTURAS DE DATOS/Semana 10/ProjectSolitaire/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Universidad/ESTRUCTURAS DE DATOS/Semana 10/ProjectSolitaire/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Administrador/CLionProjects/Project-Solitaire/cmake-build-debug/CMakeFiles/ProjectSolitaire.dir
+C:/Users/Administrador/CLionProjects/Project-Solitaire/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Administrador/CLionProjects/Project-Solitaire/cmake-build-debug/CMakeFiles/rebuild_cache.dir

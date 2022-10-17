@@ -1,6 +1,12 @@
 #include <iostream>
+#include "card.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    card* c1 = new card("8",char(05),"black");
+
+    cout<<c1->toStringCard();
+
+
     return 0;
 }
