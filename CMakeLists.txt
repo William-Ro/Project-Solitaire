@@ -3,4 +3,4 @@ project(ProjectSolitaire)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(ProjectSolitaire main.cpp card.h)
+add_executable(ProjectSolitaire main.cpp card.h deck.h)

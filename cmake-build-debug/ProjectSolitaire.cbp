@@ -87,6 +87,9 @@
 		<Unit filename="C:/Users/Administrador/CLionProjects/Project-Solitaire/card.h">
 			<Option target="ProjectSolitaire"/>
 		</Unit>
+		<Unit filename="C:/Users/Administrador/CLionProjects/Project-Solitaire/deck.h">
+			<Option target="ProjectSolitaire"/>
+		</Unit>
 		<Unit filename="C:/Users/Administrador/CLionProjects/Project-Solitaire/main.cpp">
 			<Option target="ProjectSolitaire"/>
 		</Unit>

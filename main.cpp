@@ -1,11 +1,13 @@
 #include <iostream>
-#include "card.h"
+#include "deck.h"
 
 int main() {
 
-    card* c1 = new card("8",char(05),"black");
 
-    cout<<c1->toStringCard();
+    deck d1;
+
+
+    cout<<d1.toStringDeck();
 
 
     return 0;
