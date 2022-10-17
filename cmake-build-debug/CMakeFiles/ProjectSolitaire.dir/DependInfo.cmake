@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/Administrador/CLionProjects/Project-Solitaire/main.cpp" "CMakeFiles/ProjectSolitaire.dir/main.cpp.obj" "gcc" "CMakeFiles/ProjectSolitaire.dir/main.cpp.obj.d"
+  "C:/Universidad/ESTRUCTURAS DE DATOS/Project-Solitaire/main.cpp" "CMakeFiles/ProjectSolitaire.dir/main.cpp.obj" "gcc" "CMakeFiles/ProjectSolitaire.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.
