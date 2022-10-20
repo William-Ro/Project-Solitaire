@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <utility>
 using namespace std;
 
 class card {
@@ -15,11 +16,11 @@ public:
 
     card(string value,char sign, string color){
 
-        this->value = value;
+        this->value = std::move(value);
 
         this->sign = sign;
 
-        this->color = color;
+        this->color = std::move(color);
 
     }
 

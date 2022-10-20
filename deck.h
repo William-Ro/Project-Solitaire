@@ -4,8 +4,7 @@
 
 #ifndef PROJECTSOLITAIRE_DECK_H
 #define PROJECTSOLITAIRE_DECK_H
-
-#include <queue>
+#include <vector>
 #include "card.h"
 using namespace std;
 
@@ -72,81 +71,88 @@ public:
         card* c12 = new card("12",char(03),"red");
         card* c13 = new card("13",char(03),"red");
 
-        queue.push(p1);
-        queue.push(p2);
-        queue.push(p3);
-        queue.push(p4);
-        queue.push(p5);
-        queue.push(p6);
-        queue.push(p7);
-        queue.push(p8);
-        queue.push(p9);
-        queue.push(p10);
-        queue.push(p11);
-        queue.push(p12);
-        queue.push(p13);
+        vector.push_back(p1);
+        vector.push_back(p2);
+        vector.push_back(p3);
+        vector.push_back(p4);
+        vector.push_back(p5);
+        vector.push_back(p6);
+        vector.push_back(p7);
+        vector.push_back(p8);
+        vector.push_back(p9);
+        vector.push_back(p10);
+        vector.push_back(p11);
+        vector.push_back(p12);
+        vector.push_back(p13);
 
-        queue.push(d1);
-        queue.push(d2);
-        queue.push(d3);
-        queue.push(d4);
-        queue.push(d5);
-        queue.push(d6);
-        queue.push(d7);
-        queue.push(d8);
-        queue.push(d9);
-        queue.push(d10);
-        queue.push(d11);
-        queue.push(d12);
-        queue.push(d13);
+        vector.push_back(d1);
+        vector.push_back(d2);
+        vector.push_back(d3);
+        vector.push_back(d4);
+        vector.push_back(d5);
+        vector.push_back(d6);
+        vector.push_back(d7);
+        vector.push_back(d8);
+        vector.push_back(d9);
+        vector.push_back(d10);
+        vector.push_back(d11);
+        vector.push_back(d12);
+        vector.push_back(d13);
 
-        queue.push(t1);
-        queue.push(t2);
-        queue.push(t3);
-        queue.push(t4);
-        queue.push(t5);
-        queue.push(t6);
-        queue.push(t7);
-        queue.push(t8);
-        queue.push(t9);
-        queue.push(t10);
-        queue.push(t11);
-        queue.push(t12);
-        queue.push(t13);
+        vector.push_back(t1);
+        vector.push_back(t2);
+        vector.push_back(t3);
+        vector.push_back(t4);
+        vector.push_back(t5);
+        vector.push_back(t6);
+        vector.push_back(t7);
+        vector.push_back(t8);
+        vector.push_back(t9);
+        vector.push_back(t10);
+        vector.push_back(t11);
+        vector.push_back(t12);
+        vector.push_back(t13);
 
-        queue.push(c1);
-        queue.push(c2);
-        queue.push(c3);
-        queue.push(c4);
-        queue.push(c5);
-        queue.push(c6);
-        queue.push(c7);
-        queue.push(c8);
-        queue.push(c9);
-        queue.push(c10);
-        queue.push(c11);
-        queue.push(c12);
-        queue.push(c13);
+        vector.push_back(c1);
+        vector.push_back(c2);
+        vector.push_back(c3);
+        vector.push_back(c4);
+        vector.push_back(c5);
+        vector.push_back(c6);
+        vector.push_back(c7);
+        vector.push_back(c8);
+        vector.push_back(c9);
+        vector.push_back(c10);
+        vector.push_back(c11);
+        vector.push_back(c12);
+        vector.push_back(c13);
 
     }
-    string toStringDeck(){
+    string toStringDeck() const{
 
         stringstream s;
+        for (auto i : vector) {
 
-        ::queue<card*> queueAux = queue;
+            s<<i->toStringCard()<<endl;
 
-        while (!queueAux.empty()){
-
-            s<<queueAux.front()->toStringCard();
-            queueAux.pop();
         }
-
-
         return s.str();
 
     }
 
-    queue<card*> queue;
+    void shuffle()
+    {
+
+        srand(time(NULL));      // Esto sirve para que no se repita el mismo patron a la hora de abrir el programa
+        int max = 52;
+        for(int i=0; i<max-1; i++)
+        {
+            int randNum = rand() % 52;                   //Metodo general para revolver objetos
+            std::swap(vector[i], vector[randNum]);
+        }
+    }
+
+    vector<card*> vector;
 
 
 
