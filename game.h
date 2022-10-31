@@ -21,7 +21,6 @@ public:
 
 
         d1.shuffle();        //Revolvemos las 52 cartas que tenemos
-        d1.initializeVector(space);
 
         for (int i = 0; i < 7; i++) {
             playSpace tableCard = playSpace(20);
@@ -33,12 +32,19 @@ public:
         }
 
 
-        dealCards();  //Repartimos las cartas en nuestro espacio de juego, en este caso lo mandamos por parametros
+        dealCards(space);  //Repartimos las cartas en nuestro espacio de juego, en este caso lo mandamos por parametros
 
 
     }
 
-    void dealCards() {               //Metodo para repartir las cartas
+    void dealCards(playSpace &aDeck) {               //Metodo para repartir las cartas
+
+
+        aDeck.clear();
+        for (int i = 0; i < 52; i++) {
+            aDeck.pushValueCopy(d1.vec[i]);
+        }
+
 
         for (int i = 0; i < 7; i++) {       //Acomodamos las cartas en columnas
 
@@ -92,7 +98,7 @@ public:
 
     void printSuitDetails() {
         HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-
+        cout << "\n------------------------------------------------------------\n";
         for (int j = 0; j < signCards.size(); j++) {
             switch (j) {
                 case 0:
@@ -122,27 +128,24 @@ public:
             cout << endl;
         }
         SetConsoleTextAttribute(handle,WHITE);
-        cout << "---------------------------------------------\n";
         cout << endl;
     }
 
     void printDeckDetails() {
-        cout << "--------------------------------------------\n";
-        cout << "|Deck: ";
+
+        cout <<" "<< char(176)<<"  ";
         for (unsigned int i = 0; i < space.size; i++) {
             if (space[i].getFaceUp()) {
                 cout << space[i] << " ";
             }
 
         }
-        cout << "\n--------------------------------------------\n";
+        cout << "\n------------------------------------------------------------\n";
     }
 
     void printAllDetails() {
 
-        printDeckDetails();
         printSuitDetails();
-
 
         cout << "| 6 | \t | 5 | \t | 4 | \t | 3 | \t | 2 | \t | 1 | \t | 0 |\n";
         cout<<endl;
@@ -170,6 +173,8 @@ public:
             cout << endl;
         }
         cout << endl << endl;
+
+        printDeckDetails();
 
     }
 

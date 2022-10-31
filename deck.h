@@ -48,14 +48,8 @@ public:
             std::swap(vec[i], vec[randNum]);
         }
     }
-    void initializeVector(playSpace &aDeck) {
-        int max = 52;
-        aDeck.clear();
-        for (int i = 0; i < max; i++)
-            aDeck.pushValueCopy(vec[i]);
-    }
 
-private:
+
     card vec[52];
 
 

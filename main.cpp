@@ -7,14 +7,12 @@ void HandleMove(game &game);
 void HandleMoveToAnswer(game &game);
 
 
-
 using namespace std;
 
 int main() {
 
     game Game = game();
     Game.printAllDetails();
-
     bool running = true;
     do {
         char option = ' ';
@@ -102,4 +100,6 @@ void HandleMoveToAnswer(game &game) {
     }
 
 }
+
+
 
