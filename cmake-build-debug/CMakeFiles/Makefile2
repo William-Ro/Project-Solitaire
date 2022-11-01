@@ -44,19 +44,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Administrador\CLionProjects\Project-Solitaire
+CMAKE_SOURCE_DIR = "C:\Universidad\ESTRUCTURAS DE DATOS\Project-Solitaire"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Administrador\CLionProjects\Project-Solitaire\cmake-build-debug
+CMAKE_BINARY_DIR = "C:\Universidad\ESTRUCTURAS DE DATOS\Project-Solitaire\cmake-build-debug"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -80,14 +80,14 @@ clean: CMakeFiles/ProjectSolitaire.dir/clean
 CMakeFiles/ProjectSolitaire.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjectSolitaire.dir\build.make CMakeFiles/ProjectSolitaire.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjectSolitaire.dir\build.make CMakeFiles/ProjectSolitaire.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\Administrador\CLionProjects\Project-Solitaire\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target ProjectSolitaire"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Universidad\ESTRUCTURAS DE DATOS\Project-Solitaire\cmake-build-debug\CMakeFiles" --progress-num=1,2 "Built target ProjectSolitaire"
 .PHONY : CMakeFiles/ProjectSolitaire.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ProjectSolitaire.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrador\CLionProjects\Project-Solitaire\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Universidad\ESTRUCTURAS DE DATOS\Project-Solitaire\cmake-build-debug\CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/ProjectSolitaire.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Administrador\CLionProjects\Project-Solitaire\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Universidad\ESTRUCTURAS DE DATOS\Project-Solitaire\cmake-build-debug\CMakeFiles" 0
 .PHONY : CMakeFiles/ProjectSolitaire.dir/rule
 
 # Convenience name for target.

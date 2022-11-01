@@ -25,10 +25,11 @@ int main() {
         cin >> option;
 
         /* 48 - 55 ascii code is 0 - 7 */
-
+        int cont;
         if (Game.gameCompleted()) {
             system("CLS");
             cout << "\n\n\n\t\t\t CONGRATULATIONS YOU WON :) !!!\n\n";
+            cont++;
             cin.get();
             running = false;
         } else {
@@ -43,7 +44,7 @@ int main() {
                     HandleMoveToAnswer(Game);
                     break;
                 case 51:
-                    Game.draw(3);
+                    Game.draw(1);
                     break;
                 default:
                     cout << "\nInvalid Option";
