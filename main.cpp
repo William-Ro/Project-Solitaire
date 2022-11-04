@@ -47,6 +47,7 @@ int main() {
             string str = ss.str();        //Convertimos de int a string para guardar en archivos
             archivo << str <<endl;
 
+
             archivo.close();
 
             cin.get();
