@@ -25,6 +25,7 @@ int main() {
     archivo << name<< " ";
 
 
+
     do {
         char option = ' ';
         cout << endl << endl;
@@ -45,6 +46,8 @@ int main() {
             ss<< cont;
             string str = ss.str();        //Convertimos de int a string para guardar en archivos
             archivo << str <<endl;
+
+            archivo.close();
 
             cin.get();
             running = false;
@@ -73,7 +76,7 @@ int main() {
 
     } while (running);
 
-    archivo.close();
+
 
     return 0;
 
