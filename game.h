@@ -87,10 +87,10 @@ public:
 
     bool gameCompleted() {
         for (auto &suitCard: signCards) {
-            if (suitCard.size >= 13)     //Cuando se llena la pila de "A" gana
-                return true;
+            if (suitCard.size < 13)     //Cuando se llena la pila de "A" gana
+                return false;
         }
-        return false;
+        return true;
     }
 
 
