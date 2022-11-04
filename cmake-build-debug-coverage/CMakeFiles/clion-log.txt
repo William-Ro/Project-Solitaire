@@ -1,0 +1,4 @@
+"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_C_FLAGS=--coverage -G "CodeBlocks - MinGW Makefiles" -S C:\Users\Administrador\CLionProjects\Project-Solitaire -B C:\Users\Administrador\CLionProjects\Project-Solitaire\cmake-build-debug-coverage
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Administrador/CLionProjects/Project-Solitaire/cmake-build-debug-coverage
