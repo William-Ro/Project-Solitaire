@@ -18,16 +18,14 @@ public:
 
     game() : space(52), discard(52) {
 
-
-
         d1.shuffle();        //Revolvemos las 52 cartas que tenemos
 
         for (int i = 0; i < 7; i++) {
-            playSpace tableCard = playSpace(20);
-            playSpaceCards.push_back(tableCard);
+            playSpace stackCards = playSpace(20);     //Crea las 7 "pilas" con las que vamos a jugar
+            table.push_back(stackCards);
         }
         for (int i = 0; i < 4; i++) {
-            playSpace suitCard = playSpace(13);
+            playSpace suitCard = playSpace(13);      //Crea la pila donde van los "A"
             signCards.push_back(suitCard);
         }
 
@@ -48,13 +46,13 @@ public:
 
         for (int i = 0; i < 7; i++) {       //Acomodamos las cartas en columnas
 
-            for (int j = 0; j < 7 - i; j++) {
+            for (int j = 0; j < 7 - i; j++) {          //Este for va disminuyendo las cartas al repartir
 
                 if (j == (7 - i) - 1) {
                     space.top().flip();        //Le doy vuelta a la ultima carta
                 }
 
-                playSpaceCards[j].push(space.top());
+                table[j].push(space.top());
                 space.pop();
             }
         }
@@ -77,7 +75,7 @@ public:
             discard.clear();
         }
 
-        int index = 0;
+        int index;
         for (int i = 0; i < numToDeal; i++) {
             index = space.size - i - 1;
             if (index >= 0) {
@@ -89,10 +87,10 @@ public:
 
     bool gameCompleted() {
         for (auto &suitCard: signCards) {
-            if (suitCard.size < 13)
-                return false;
+            if (suitCard.size >= 13)     //Cuando se llena la pila de "A" gana
+                return true;
         }
-        return true;
+        return false;
     }
 
 
@@ -150,23 +148,23 @@ public:
         cout << "| 6 | \t | 5 | \t | 4 | \t | 3 | \t | 2 | \t | 1 | \t | 0 |\n";
         cout<<endl;
         //Cannot be unsigned as number is always greater than or equal to 0 --
-        int colMax = playSpaceCards.size();
+        int colMax = table.size();
         int rowMax = 0;
         for (int i = 0; i < colMax; i++) {
-            if (playSpaceCards[i].size > rowMax) {
-                rowMax = playSpaceCards[i].size;
+            if (table[i].size > rowMax) {
+                rowMax = table[i].size;
             }
         }
 
         for (int i = 0; i < rowMax; i++) {
             for (int j = colMax - 1; j >= 0; j--) {
-                if (i >= playSpaceCards[j].size) {
+                if (i >= table[j].size) {
                     cout << " \t ";
                     continue;
                 }
 
-                if (playSpaceCards[j][i].getFaceUp()) {
-                    cout << "  " << playSpaceCards[j][i] << " \t ";
+                if (table[j][i].getFaceUp()) {
+                    cout << "  " << table[j][i] << " \t ";
                 } else
                     cout << "  " << (char) 176 << " \t ";
             }
@@ -191,8 +189,8 @@ public:
                 return false;
             }
         } else {
-            if (!playSpaceCards[from].empty())
-                fromCard = &playSpaceCards[from].top();
+            if (!table[from].empty())
+                fromCard = &table[from].top();
             else
                 return false;
         }
@@ -226,10 +224,10 @@ public:
 
             }
             if (from != 7) {
-                playSpace::move(playSpaceCards[from], signCards[moveIndex]);
-                if (!playSpaceCards[from].empty()) {
-                    if (!playSpaceCards[from].top().getFaceUp())
-                        playSpaceCards[from].top().flip();
+                playSpace::move(table[from], signCards[moveIndex]);
+                if (!table[from].empty()) {
+                    if (!table[from].top().getFaceUp())
+                        table[from].top().flip();
                 }
             } else {
                 signCards[moveIndex].push(space.top());
@@ -247,17 +245,17 @@ public:
 
     void makeMoveBetweenRows(int from, int to) {
         if (validMove(from, to)) {
-            if (!playSpaceCards[to].empty())
-                playSpaceCards[to].top().down = &playSpaceCards[from].top();
+            if (!table[to].empty())
+                table[to].top().down = &table[from].top();
 
-            if (playSpaceCards[from].top().getValue() != 'K')
-                playSpaceCards[from].top().up = &playSpaceCards[to].top();
+            if (table[from].top().getValue() != 'K')
+                table[from].top().up = &table[to].top();
 
-            playSpace::move(playSpaceCards[from], playSpaceCards[to]);
+            playSpace::move(table[from], table[to]);
 
-            if (!playSpaceCards[from].empty())
-                if (!playSpaceCards[from].top().getFaceUp())
-                    playSpaceCards[from].top().flip();
+            if (!table[from].empty())
+                if (!table[from].top().getFaceUp())
+                    table[from].top().flip();
         }
 
     }
@@ -283,17 +281,17 @@ public:
             }
         } else {
             //if no card in moving from row not valid
-            if (!playSpaceCards[from].empty())
-                fromCard = &playSpaceCards[from].top();
+            if (!table[from].empty())
+                fromCard = &table[from].top();
             else
                 return false;
         }
 
-        if (!playSpaceCards[to].empty())
-            toCard = &playSpaceCards[to].top();
+        if (!table[to].empty())
+            toCard = &table[to].top();
 
         //move king to empty space
-        if (playSpaceCards[to].empty()) {
+        if (table[to].empty()) {
             if (fromCard->getValue() == 'K') //Esto como dice el autor nos sirve para que el K se pueda mover libremente en los espacios vacios
                 return true;
             else
@@ -319,12 +317,12 @@ public:
 
     void makeMoveDeckToRow(int to) {
         if (validMove(7, to)) {
-            if (!playSpaceCards[to].empty())
-                playSpaceCards[to].top().down = &space.top();
+            if (!table[to].empty())
+                table[to].top().down = &space.top();
             if (space.top().getValue() != 'K')
-                space.top().up = &playSpaceCards[to].top();
+                space.top().up = &table[to].top();
 
-            playSpaceCards[to].push(space.top());
+            table[to].push(space.top());
             space.pop();
 
 
@@ -334,11 +332,11 @@ public:
     bool validRowToRowMove(card *fromCard, int to) {
         card *toCard;
 
-        if (!playSpaceCards[to].empty())
-            toCard = &playSpaceCards[to].top();
+        if (!table[to].empty())
+            toCard = &table[to].top();
 
         //move king to empty space
-        if (playSpaceCards[to].empty()) {
+        if (table[to].empty()) {
             if (fromCard->getValue() == 'K')
                 return true;
             else
@@ -367,16 +365,16 @@ public:
         if (from == 7) {
             makeMoveDeckToRow(to);
             return;
-        } else if (playSpaceCards[from].size == 0)
+        } else if (table[from].size == 0)
             return;
 
         card *fromCard;
-        fromCard = &playSpaceCards[from].top();
+        fromCard = &table[from].top();
 
         if (fromCard->up == nullptr)
             makeMoveBetweenRows(from, to);
         else {
-            int pos = playSpaceCards[from].size - 1;
+            int pos = table[from].size - 1;
             bool checkParent = true;
             bool found = false;
             while (checkParent && !found) {
@@ -398,13 +396,13 @@ public:
 
                 while (hasChildren) {
 
-                    if (!playSpaceCards[to].empty()) {
-                        fromCard->up = &playSpaceCards[to].top();
-                        playSpaceCards[to].top().down = fromCard;
+                    if (!table[to].empty()) {
+                        fromCard->up = &table[to].top();
+                        table[to].top().down = fromCard;
                     }
-                    playSpaceCards[to].push(*fromCard);
+                    table[to].push(*fromCard);
 
-                    playSpaceCards[from].removeAt(pos);
+                    table[from].removeAt(pos);
                     fromCard = fromCard->down;
 
 
@@ -415,9 +413,9 @@ public:
 
             }
 
-            if (!playSpaceCards[from].empty())
-                if (!playSpaceCards[from].top().getFaceUp())
-                    playSpaceCards[from].top().flip();
+            if (!table[from].empty())
+                if (!table[from].top().getFaceUp())
+                    table[from].top().flip();
         }
     }
 
@@ -425,11 +423,12 @@ public:
 private:
 
     playSpace space;   //Espacio de juego global
-    playSpace discard;
 
-    vector<playSpace> playSpaceCards;
+    playSpace discard; //Espacio donde se descartan cartas
 
-    vector<playSpace> signCards;
+    vector<playSpace> table;        //En este vector van metidas las 7 pilas con las que vamos a jugar
+
+    vector<playSpace> signCards;     //Aca va metida la pila de los "A"
 
 
 };

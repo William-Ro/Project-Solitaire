@@ -19,9 +19,6 @@ class card {
 
 public:
 
-    card *up;
-    card *down;
-
     card(char value, char sign): up(nullptr),down(nullptr) {
 
         this->value = value;
@@ -30,23 +27,12 @@ public:
 
         this->isFaceUp = false;
 
-
-
     }
-    card(){
+    card(){  //Este contructor se va usar luego para inicializar el mazo
 
     }
 
-    string toStringCard() {
 
-        stringstream s;
-
-        s << value << " ";
-
-        s << sign << " ";
-
-        return s.str();
-    }
 
     void flip() {
         isFaceUp = !isFaceUp;        //Esto es para las cartas que tenemos ocultas, cuando queremos darles vuelta
@@ -54,17 +40,17 @@ public:
 
     bool getFaceUp() const {
 
-        return isFaceUp;
+        return isFaceUp;                //Obtiene el estado de la carta
     }
 
     char getSign() const {
 
-        return sign;             //Devuelve el simbolo
+        return sign;             //Devuelve el simbolo de la carta
     }
 
     char getValue() const {
 
-        return value;
+        return value;            //Devuelve el valor de la carta
     }
 
     int getValueCourtCards() {
@@ -72,8 +58,8 @@ public:
         if (value == 'A') {
             return 1;
         } else if (value == 'T') {
-            return 10;
-        } else if (value == 'J') {
+            return 10;                  //Esto se utiliza porque el valor de las cartas es un char y ocupamos el int
+        } else if (value == 'J') {      // de cuanto vale esa carta
             return 11;
         } else if (value == 'Q') {
             return 12;
@@ -82,20 +68,24 @@ public:
         }
         else
         {
-            char c[] = {value, '\0'};
+            char c[] = {value, '\0'};        //Esto convierte el char a int
             return atoi(c);
         }
 
     };
 
 
-    friend std::ostream &operator<<(std::ostream &os, card &c);
+    friend std::ostream &operator<<(std::ostream &os, card &c);  //Se utiliza operadores para mostrar las cartas
+    card *up;
+    card *down;
 
 private:
 
-    char value;
-    char sign;
-    bool isFaceUp;
+    char value;  //Variable del valor que tiene cada carta
+
+    char sign;   //Este es el simbolo que tiene cada carta
+
+    bool isFaceUp;  //Para ver de que lado esta la carta
 
 
 };
@@ -107,8 +97,8 @@ std::ostream &operator<<(ostream &os, card &c) {
     if(c.sign == char(05) || c.sign == char(06))
         SetConsoleTextAttribute(handle, BLUE);
     else
-        SetConsoleTextAttribute(handle,RED);
-
+        SetConsoleTextAttribute(handle,RED);         //Metodo para cambiar de color
+                                                                                // los simbolos en consola
     os<< c.sign << c.value;
     SetConsoleTextAttribute(handle,WHITE);
 

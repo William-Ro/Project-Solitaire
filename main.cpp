@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "game.h"
 
 
@@ -11,9 +12,19 @@ using namespace std;
 
 int main() {
 
+    string name;
+    int cont = 0;
     game Game = game();
     Game.printAllDetails();
     bool running = true;
+
+    cout<<"Type your name: "; cin>>name;
+
+    ofstream archivo ("solitaire.txt");
+
+    archivo << name<< " ";
+
+
     do {
         char option = ' ';
         cout << endl << endl;
@@ -29,6 +40,12 @@ int main() {
         if (Game.gameCompleted()) {
             system("CLS");
             cout << "\n\n\n\t\t\t CONGRATULATIONS YOU WON :) !!!\n\n";
+            cont++;
+            stringstream ss;
+            ss<< cont;
+            string str = ss.str();        //Convertimos de int a string para guardar en archivos
+            archivo << str <<endl;
+
             cin.get();
             running = false;
         } else {
@@ -43,7 +60,7 @@ int main() {
                     HandleMoveToAnswer(Game);
                     break;
                 case 51:
-                    Game.draw(3);
+                    Game.draw(1);
                     break;
                 default:
                     cout << "\nInvalid Option";
@@ -56,7 +73,10 @@ int main() {
 
     } while (running);
 
+    archivo.close();
+
     return 0;
+
 }
 
 void HandleMove(game &game) {

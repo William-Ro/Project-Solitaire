@@ -9,6 +9,8 @@
 #include "card.h"
 #include "playSpace.h"
 
+
+// Se declaran los constantes para cada una de las posibilidades de cartas
 const static char VALUE[] = {'A','2','3','4','5','6','7','8','9','T','J','Q','K'};
 const static char SUITS[] = {char(03),char(04),char(06),char(05)};
 
@@ -24,33 +26,24 @@ public:
     }
 
     void initialize() {
-        int index = 0;        //Llenar el mazo
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 13; j++) {
-                vec[index] = card(VALUE[j], SUITS[i]);
+        int index = 0;                           //Metodo para crear cada una de las cartas y meterlas en un vector
+        for (char i : SUITS) {                  //For each, recomendacion el IDE que estamos usando
+            for (char j : VALUE) {
+                vec[index] = card(j, i); //Metemos las cartas al vector
                 index++;
             }
         }
     }
-    string toStringDeck() const {
-
-        stringstream s;
-        for (auto i: vec) {
-            s << i.toStringCard() << endl;
-        }
-        return s.str();
-
-    }
     void shuffle() {
         int max = 52;
         for (int i = 0; i < max - 1; i++) {
-            int randNum = rand() % 52;                   //Metodo general para revolver objetos
+            int randNum = rand() % 52;                   //Metodo general para revolver objetos https://www.geeksforgeeks.org/shuffle-a-deck-of-cards-3/
             std::swap(vec[i], vec[randNum]);
         }
     }
 
 
-    card vec[52];
+    card vec[52];    //Vector donde vamos a meter las cartas
 
 
 };
